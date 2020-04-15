@@ -3,13 +3,16 @@
 "use strict";
 
 // Se agrega express para creación de rutas
-var express = require("express");
-// Se agrega el archivo que contiene las funciones que serán utilizadas
-var multiplosController = require("../controllers/multiplosController");
-// Se agrega el router
-var api = express.Router();
+const express = require("express");
 
-api.get("/", multiplosController.index);
+// Se agrega el archivo que contiene las funciones que serán utilizadas
+
+const MultiplosController = require("../controllers/multiplosController");
+const Load = require("../middleware/load");
+// Se agrega el router
+const api = express.Router();
+
+api.get("/", Load.loadNumber, MultiplosController.index);
 
 // Se exporta la configuración
 module.exports = api;
